@@ -1,0 +1,6 @@
+{
+  "name": "QMSAnchor | Quality & Accreditation Advisory",
+  "description": "Premier Quality Management Systems, NABL and NABH Accreditation Advisory for Laboratories and Healthcare Facilities across India.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
