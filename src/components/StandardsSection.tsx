@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   CheckCircle2,
   FileCheck,
@@ -10,9 +10,12 @@ import {
   Scale,
   Gauge,
   Syringe,
+  Users,
 } from 'lucide-react';
+import auditTeamImage from '../assets/images/audit_consultation_team_1791816543520.jpg';
 
 export const StandardsSection: React.FC = () => {
+  const [imgError, setImgError] = useState(false);
   return (
     <section id="standards-breakdown" className="py-20 bg-white border-b border-rose-200/80 w-full">
       <div className="w-full px-4 sm:px-8 lg:px-12 2xl:px-20 space-y-16">
@@ -175,13 +178,38 @@ export const StandardsSection: React.FC = () => {
         {/* Lead Assessor Consultation Showcase (Visual Proof Adjacency) */}
         <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-slate-700 shadow-md">
-              <img
-                src="/src/assets/images/audit_consultation_team_1791816543520.jpg"
-                alt="Lead Assessors reviewing laboratory accreditation compliance blueprints"
-                className="w-full h-64 sm:h-72 object-cover"
-                referrerPolicy="no-referrer"
-              />
+            <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-slate-700 shadow-md bg-slate-900 min-h-[256px]">
+              {!imgError ? (
+                <img
+                  src={auditTeamImage}
+                  alt="Lead Assessors reviewing laboratory accreditation compliance blueprints"
+                  className="w-full h-64 sm:h-72 object-cover"
+                  onError={() => setImgError(true)}
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-full h-64 sm:h-72 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 flex flex-col justify-between text-white">
+                  <div className="flex items-center justify-between">
+                    <div className="p-2.5 bg-white/10 rounded-xl">
+                      <Users className="w-6 h-6 text-rose-400" />
+                    </div>
+                    <span className="text-xs font-mono font-bold text-amber-300 bg-amber-950/60 border border-amber-500/30 px-2.5 py-0.5 rounded-full">
+                      Lead Assessor Panel
+                    </span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <h4 className="text-lg font-bold font-heading text-white">
+                      Mock Assessment & Pre-Audit Scrutiny
+                    </h4>
+                    <p className="text-xs text-slate-300">
+                      Simulating real statutory NABL/NABH inspections with clause-by-clause discrepancy reports.
+                    </p>
+                  </div>
+                  <div className="text-[11px] text-slate-400 pt-2 border-t border-slate-700/60">
+                    Qualified Lead Assessors & Technical Experts
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="lg:col-span-7 space-y-4">

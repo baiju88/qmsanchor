@@ -1,8 +1,10 @@
-import React from 'react';
-import { ArrowRight, MessageSquare, ShieldCheck, CheckCircle2, ChevronRight, Phone, Mail } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, MessageSquare, ShieldCheck, CheckCircle2, ChevronRight, Phone, Mail, Microscope, Award } from 'lucide-react';
 import { WHATSAPP_RAW_PHONE, CONTACT_PHONE, CONTACT_EMAIL } from '../utils/whatsapp.ts';
+import heroLabImage from '../assets/images/hero_lab_accreditation_1791816532928.jpg';
 
 export const HeroSection: React.FC = () => {
+  const [imgError, setImgError] = useState(false);
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#fef5f7] via-[#fdf2f4] to-[#fae9ec] pt-8 pb-16 sm:pb-24 border-b border-rose-200/80">
       {/* Subtle architectural ambient grid */}
@@ -97,17 +99,44 @@ export const HeroSection: React.FC = () => {
 
           {/* Right Column: Hero Visual Asset & Floating Proof Card */}
           <div className="lg:col-span-5 relative flex flex-col justify-center">
-            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-rose-200/90 bg-white group">
-              <img
-                src="/src/assets/images/hero_lab_accreditation_1791816532928.jpg"
-                alt="Clinical laboratory and healthcare quality inspection facility"
-                className="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-102 transition-transform duration-500"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-rose-200/90 bg-slate-900 group min-h-[320px] sm:min-h-[384px]">
+              {!imgError ? (
+                <img
+                  src={heroLabImage}
+                  alt="Clinical laboratory and healthcare quality inspection facility"
+                  className="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-102 transition-transform duration-500"
+                  onError={() => setImgError(true)}
+                  loading="eager"
+                />
+              ) : (
+                <div className="w-full h-80 sm:h-96 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 flex flex-col justify-between text-white">
+                  <div className="flex items-center justify-between">
+                    <div className="p-3 bg-white/10 rounded-xl backdrop-blur-md">
+                      <Microscope className="w-8 h-8 text-[#0284C7]" />
+                    </div>
+                    <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full">
+                      Accreditation Audit Ready
+                    </span>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-bold font-heading text-white">
+                      Diagnostic & Testing Laboratory Precision
+                    </h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      ISO 15189:2022 & ISO/IEC 17025 conformity, metrological traceability verification, and peer assessment readiness.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-4 text-xs text-slate-400 pt-2 border-t border-slate-700/60">
+                    <span>• Equipment IQC/EQAS</span>
+                    <span>• Measurement Uncertainty</span>
+                    <span>• Method Validation</span>
+                  </div>
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
 
               {/* In-Image Caption Overlay */}
-              <div className="absolute bottom-4 left-4 right-4 text-white">
+              <div className="absolute bottom-4 left-4 right-4 text-white z-10">
                 <div className="flex items-center gap-2 text-xs font-semibold text-rose-200 mb-1">
                   <ShieldCheck className="w-4 h-4 text-emerald-400" />
                   <span>ISO 15189 & ISO/IEC 17025 Compliance</span>
